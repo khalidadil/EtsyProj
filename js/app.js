@@ -11,7 +11,7 @@ EtsyClient.prototype.listings = function(){
 	var js = ".js";
 
 	$.getJSON(this.complete_api_url + this.model + this.filter + ".js?api_key=" + this.api_key).then(function(data){
-		console.log(data);
+		$(body).append(data);
 	})
 }
 
