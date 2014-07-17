@@ -8,7 +8,9 @@ function EtsyClient(options){
 EtsyClient.prototype.pullAllActiveListings = function(){
 	var model = "listings/";
 	var filter = "active";
-	var url = this.complete_api_url + model + filter + ".js?limit=25&min_price=100000&includes=MainImage&api_key=" + this.api_key + "&callback=?";
+	var num_listings = 15;
+	var min_price = 100000;
+	var url = this.complete_api_url + model + filter + ".js?limit=" + num_listings + "&min_price=" + min_price + "&includes=MainImage&api_key=" + this.api_key + "&callback=?";
 	
 	var html_template_url = "./templates/listings.tmpl";
 
@@ -16,16 +18,14 @@ EtsyClient.prototype.pullAllActiveListings = function(){
 		var findVariables = _.template(my_template);
 
 		$.getJSON(url).then(function(data){
+				console.log(data);
 				var search_results = data.results;
-				console.log(search_results);
 				search_results.forEach(function(n){
-					//console.log(n.listing_id);
-					//var img_url = this.complete_api_url + model + filter + ".js?&api_key=" + this.api_key + "&callback=?";
-
 					var filled_html = findVariables(n);
 					var div = document.createElement('div');
+					div.className = "itemBox";
 					div.innerHTML = filled_html;
-					document.body.appendChild(div);
+					$('.mainArea')[0].appendChild(div);
 				})
 		});
 	});

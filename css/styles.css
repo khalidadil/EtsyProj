@@ -6,7 +6,12 @@
 .html {
   overflow: hidden;
 }
-
+.mainBody{
+  background: url('../img/background.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
 .header {
   display: block;
   width: 100%;
@@ -26,17 +31,17 @@
   text-align: center;
   margin: 0;
 }
-.resultPanel {
+.mainArea {
   display: block;
-  width: 100%;
-  background-color: lightgreen;
+  /*background-color: lightgreen;*/
+  width: 85%;
+  margin: 15px auto;
   padding: 2% 0 2%;
   text-align: center;
-  margin: 0;
 }
 .itemBox {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
   display: inline-block;
   width: 150px;
   height: 150px;
