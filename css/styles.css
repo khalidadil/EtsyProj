@@ -1,0 +1,61 @@
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .25s linear;
+}
+.html {
+  overflow: hidden;
+}
+
+.header {
+  display: block;
+  width: 100%;
+  background-color: darkgrey;
+  padding: 5% 0 5%;
+  text-align: center;
+  margin: 0;
+}
+.header h1 {
+  margin: 0;
+}
+.menuBar {
+  display: block;
+  width: 100%;
+  background-color: darkblue;
+  padding: 2% 0 2%;
+  text-align: center;
+  margin: 0;
+}
+.resultPanel {
+  display: block;
+  width: 100%;
+  background-color: lightgreen;
+  padding: 2% 0 2%;
+  text-align: center;
+  margin: 0;
+}
+.itemBox {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  background-color: lightgrey;  
+  position: relative;
+}
+.itemBox h3 {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  display: none;
+}
+.itemBox:hover {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  background-color: darkgrey;  
+}
+.itemBox:hover h3 {
+  display: block;
+}
