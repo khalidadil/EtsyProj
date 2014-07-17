@@ -5,15 +5,33 @@ function EtsyClient(options){
 	this.complete_api_url = this.etsy_url + this.version;
 }
 
-EtsyClient.prototype.listings = function(){
-	this.model = "listings/";
-	this.filter = "active";
-	var js = ".js";
+EtsyClient.prototype.pullAllActiveListings = function(){
+	var model = "listings/";
+	var filter = "active";
 
-	$.getJSON(this.complete_api_url + this.model + this.filter + ".js?api_key=" + this.api_key).then(function(data){
-		$(body).append(data);
-	})
+	return $.getJSON(this.complete_api_url + model + filter + ".js?api_key=" + this.api_key + "&callback=?").then(function(data){
+		console.log(data);
+	});
 }
 
-var client = new EtsyClient({version:"v2/"});
-client.listings();
+EtsyClient.prototype.getListingInfo = function(id) {
+    var model = 'listings';
+
+    return $.getJSON(this.complete_api_url + model + '/' + id + ".js?api_key=" + this.api_key + "&callback=?").then(function(data) {
+        console.log(data);
+    });
+}
+
+EtsyClient.prototype.getUserInfo = function(id) {
+    var model = 'users';
+    return $.getJSON(this.complete_api_url + model + '/' + id + "?api_key=" + this.api_key + "&callback=?").then(function(data) {
+        console.log(data);
+    });
+}
+
+window.onload=function(){
+	var client = new EtsyClient({version:"v2/"});
+	client.pullAllActiveListings();
+	client.getListingInfo(77362746);
+	client.getUserInfo(12524035);
+};
