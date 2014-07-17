@@ -38,10 +38,12 @@
   margin-left: 5px;
   margin-right: 5px;
   display: inline-block;
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   background-color: lightgrey;  
   position: relative;
+  overflow: hidden;
+
 }
 .itemBox h3 {
   position: absolute;
@@ -50,10 +52,13 @@
   -webkit-transform: translateX(-50%);
   display: none;
 }
+.itemBox img {
+  width: 150px;
+}
 .itemBox:hover {
   display: inline-block;
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   background-color: darkgrey;  
 }
 .itemBox:hover h3 {
