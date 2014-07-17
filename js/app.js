@@ -8,22 +8,24 @@ function EtsyClient(options){
 EtsyClient.prototype.pullAllActiveListings = function(){
 	var model = "listings/";
 	var filter = "active";
-	var url = this.complete_api_url + model + filter + ".js?limit=25&min_price=100000&api_key=" + this.api_key + "&callback=?";
+	var url = this.complete_api_url + model + filter + ".js?limit=25&min_price=100000&includes=MainImage&api_key=" + this.api_key + "&callback=?";
 	
-	var html_template_url = "./templates/listing.tmpl";
+	var html_template_url = "./templates/listings.tmpl";
 
 	$.get(html_template_url).then(function(my_template){
 		var findVariables = _.template(my_template);
 
 		$.getJSON(url).then(function(data){
 				var search_results = data.results;
+				console.log(search_results);
 				search_results.forEach(function(n){
+					//console.log(n.listing_id);
+					//var img_url = this.complete_api_url + model + filter + ".js?&api_key=" + this.api_key + "&callback=?";
+
 					var filled_html = findVariables(n);
-					// $('h1').append(filled_html);
 					var div = document.createElement('div');
 					div.innerHTML = filled_html;
 					document.body.appendChild(div);
-					// document.body.appendChild(div);
 				})
 		});
 	});
