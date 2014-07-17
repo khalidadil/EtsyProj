@@ -8,15 +8,17 @@ function EtsyClient(options){
 EtsyClient.prototype.pullAllActiveListings = function(){
 	var model = "listings/";
 	var filter = "active";
+	var url = this.complete_api_url + model + filter + ".js?limit=25&min_price=100000&api_key=" + this.api_key + "&callback=?";
+	
+	var html_template = $('#html_template')[0].textContent;
+	var findVariables = _.template(html_template);
 
-	return $.getJSON(this.complete_api_url + model + filter + "&treasury_search_string='title:nyan'" + ".js?api_key=" + this.api_key + "&callback=?").then(function(data){
-		console.log(data);
-		// $('body').append(data);
-		// var mydata = [].slice.call(arguments);
-  //       mydata.forEach(function(n){
-  //       	console.log(n);
-  //       	$('h1').append(n);
-  //       })
+	$.getJSON(url).then(function(data){
+			var search_results = data.results;
+			search_results.forEach(function(n){
+				var filled_html = findVariables(n);
+				$('h1').append(filled_html);
+			})
 	});
 }
 
