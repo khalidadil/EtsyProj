@@ -41,7 +41,6 @@
   width: 150px;
   height: 150px;
   background-color: lightgrey;
-  overflow: hidden;
   position: relative;
 }
 .itemBox h3 {
