@@ -73,7 +73,6 @@ EtsyClient.prototype.showUserInfo = function(id) {
         this.getHTMLTemplate('/templates/seller.tmpl'),
         this.getUserInfo(id)
     ).then(function(template, data) {
-    		console.log(data);
             var filled_html = template(data.results[0]);
             $('.mainArea').append(filled_html);
     });
