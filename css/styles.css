@@ -33,6 +33,7 @@
 }
 .mainArea {
   display: block;
+  /*background-color: lightgreen;*/
   width: 85%;
   margin: 15px auto;
   padding: 2% 0 2%;
@@ -46,7 +47,6 @@
   height: 150px;
   background-color: lightgrey;
   position: relative;
-  background-size:cover;
 }
 .itemBox h3 {
   position: absolute;
