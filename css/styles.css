@@ -40,13 +40,15 @@
   text-align: center;
 }
 .itemBox {
-  margin-left: 15px;
-  margin-right: 15px;
+  margin: 15px 5px 15px 10px;
   display: inline-block;
   width: 150px;
   height: 150px;
   background-color: lightgrey;
   position: relative;
+  vertical-align: bottom;
+  background-size: cover;
+  background-position: center;
 }
 .itemBox h3 {
   position: absolute;
@@ -64,6 +66,7 @@
 .itemBox:hover h3 {
   display: block;
 }
-.itemBox img {
+/*.itemBox img {
   width: 150px;
 }
+*/
