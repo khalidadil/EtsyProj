@@ -57,7 +57,7 @@ EtsyClient.prototype.showListingInfo = function(id) {
     ).then(function(template, data) {
     		console.log(data);
             var filled_html = template(data.results[0]);
-            $('.mainArea').append(filled_html);
+            $('body').append(filled_html);
     });
 }
 
@@ -82,6 +82,17 @@ EtsyClient.prototype.showUserInfo = function(id) {
     });
 }
 
+EtsyClient.prototype.handleClicks = function() {
+    var self = this;
+    $('body').on('click', '.cover', function(){
+    	self.showListingInfo($(this).attr('id'));
+    });
+    $('body').on('click', '.closebutton', function(){
+    	$( ".mask" ).remove();
+    	$( ".hoverbox" ).remove();
+    });
+}
+
 // $("a").click(function(event) {
 //         alert(event.target.id);
 // });
@@ -89,6 +100,7 @@ EtsyClient.prototype.showUserInfo = function(id) {
 $(function() {
     var client = new EtsyClient({version: "v2/"});
     client.showListings ();
-    client.showListingInfo(181535970);
-    client.showUserInfo(12524035);
+    client.handleClicks();
+    // client.showListingInfo(181535970);
+    // client.showUserInfo(12524035);
 });

@@ -1,3 +1,21 @@
-<div class="itemBox" style="background-image: url(<%= MainImage.url_fullxfull %>);">
-	<h3><%= price %></h3>
+<!-- <div class="itemBox" >
+	<h3></h3>
+</div>
+
+ -->
+<div class="mask"></div>
+<div class = "hoverbox">
+  <div class = "leftside">
+    <div class="image" style="background-image: url(<%= MainImage.url_fullxfull %>);"></div>
+    <div class="description"><p><%= description %></p></div>
+  </div><!--
+  --><div class = "rightside">
+  		<div class="title"><h1><%= title %></h1></div>
+  		<div class="price"><h2>Price: $<%= price %></h2></div>
+  		<div class="seller"><p>Crafted by: Artisanal2019</p></div>
+  		<div class="exclusive"><p>Only <%= quantity %> of this ultra exclusive item left! Get it before the <%= views %> other people that viewed this item buy it!
+        </p></div>
+  		<div class="buy">BUY NOW</div>
+  </div>
+  <div class = "closebutton">X</div>
 </div>
