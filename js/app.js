@@ -93,14 +93,8 @@ EtsyClient.prototype.handleClicks = function() {
     });
 }
 
-// $("a").click(function(event) {
-//         alert(event.target.id);
-// });
-
 $(function() {
     var client = new EtsyClient({version: "v2/"});
     client.showListings ();
     client.handleClicks();
-    // client.showListingInfo(181535970);
-    // client.showUserInfo(12524035);
 });
