@@ -126,42 +126,41 @@ p{
   display:inline-block;
   width: 50%;
   height: 100%;
-  background: #000;
+  background: #C4B198;
   position: absolute;
 }
 
 .title{
-  positon: absolute;
-  top: 10px;
-  left: 10px;
-  width: 100%;
-  height: 20px;
-  display: inline-block;
+  width: 85%;
+  /*height: 20px;*/
+  /*display: inline-block;*/
+  max-height: 114px;
+  margin: 0 auto;
+  margin-top: 2.68em;
+  padding: 0px 10px;
+  overflow: hidden;
 }
 
 .title h1{
-  color: red;
-  font-size: 18px;
+  color: #40281C;
+  font-size: 20px;
+  /*overflow: auto;*/
 }
 
 .price{
-  positon: absolute;
-  top: 15px;
-  left: 10px;
+  padding-left: 40px;
   width: 100%;
   height: 20px;
   display: inline-block;
 }
 
 .price h2{
-  color: white;
-  font-size: 14px;
+  color: #72624F;
+  font-size: 20px;
 }
 
 .seller{
-  positon: absolute;
-  top: 20px;
-  left: 10px;
+  padding-left: 40px;
   width: 100%;
   height: 20px;
   display: inline-block;
@@ -169,36 +168,52 @@ p{
 
 .seller p{
   color: white;
-  font-size: 12px;
+  font-size: 18px;
+  padding: 0px;
 }
 
 .exclusive{
-  positon: absolute;
-  top: 30px;
-  left: 10px;
-  width: 100%;
-  height: 20px;
-  display: inline-block;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+  height: 170px;
 }
 
 .exclusive p{
    color: white;
-   font-size: 12px;
+   font-size: 20px;
+   padding: 0px;
+   margin: 0px;
+}
+
+.exclusive p i{
+  color: #72624F;
+  font-style: normal;
+}
+
+a{
+  text-decoration: none;
 }
 
 .buy{
-  position: absolute;
-  top: 90%;
-  left: 80%;
-  background-color: #fff;
-  width: 60px;
-  height: 40px;
-  font-size: 12px;
+/*  position: absolute;
+  top: 80%;
+  left: 120px;*/
+  background-color: #800000;
+  width: 130px;
+  height: 60px;
+  font-size: 20px;
+  border-radius: 10px;
+  color: #fff;
+  padding: 15px 17px;
+  margin: 0 auto;
+  margin-top: 10px;
+  box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
 }
 
 .closebutton{
-  color: red;
-  font-size: 20px;
+  color: #fff;
+  font-size: 30px;
   position: absolute;
   right: 10px;
   top: 10px;

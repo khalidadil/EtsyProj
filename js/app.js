@@ -32,7 +32,7 @@ EtsyClient.prototype.showListings = function() {
         this.getAllActiveListings()
     ).then(function(template, data) {
         var search_results = data.results;
-        console.log(search_results);
+        // console.log(search_results);
         search_results.forEach(function(n) {
             var filled_html = template(n);
             $('.mainArea').append(filled_html);
@@ -55,7 +55,8 @@ EtsyClient.prototype.showListingInfo = function(id) {
         this.getHTMLTemplate('/templates/listing.tmpl'),
         this.getListingInfo(id)
     ).then(function(template, data) {
-        console.log(data);
+        // console.log(data.results[0].user_id);
+        self.showUserInfo(data.results[0].user_id);
         var filled_html = template(data.results[0]);
         $('body').append(filled_html);
     });
@@ -78,7 +79,7 @@ EtsyClient.prototype.showUserInfo = function(id) {
     ).then(function(template, data) {
         console.log(data);
         var filled_html = template(data.results[0]);
-        $('.mainArea').append(filled_html);
+        $('.mainsection').append(filled_html);
     });
 }
 
@@ -92,13 +93,11 @@ EtsyClient.prototype.handleClicks = function() {
         $(".mask").remove();
         $(".hoverbox").remove();
         $('body').toggleClass('noScroll');
-
     });
     $('body').on('click', '.closebutton', function() {
         $(".mask").remove();
         $(".hoverbox").remove();
         $('body').toggleClass('noScroll');
-
     });
 }
 
