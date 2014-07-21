@@ -6,9 +6,9 @@ function EtsyClient(options) {
 }
 
 EtsyClient.prototype.getHTMLTemplate = function(url) {
-    return $.get(url).then(function(my_template){
-    	findVariables = _.template(my_template);
-    	return findVariables;
+    return $.get(url).then(function(my_template) {
+        findVariables = _.template(my_template);
+        return findVariables;
     });
 };
 
@@ -20,8 +20,8 @@ EtsyClient.prototype.getAllActiveListings = function() {
     var url = this.complete_api_url + model + filter + ".js?limit=" + num_listings + "&min_price=" + min_price + "&includes=MainImage&api_key=" + this.api_key + "&callback=?";
 
     return $.getJSON(url).then(function(data) {
-    	this.cachedListings = data;
-    	return data;
+        this.cachedListings = data;
+        return data;
     });
 }
 
@@ -43,9 +43,9 @@ EtsyClient.prototype.showListings = function() {
 EtsyClient.prototype.getListingInfo = function(id) {
     var model = 'listings';
     var url = this.complete_api_url + model + '/' + id + ".js?includes=MainImage&api_key=" + this.api_key + "&callback=?";
-    
+
     return $.getJSON(url).then(function(data) {
-    	return data;
+        return data;
     });
 }
 
@@ -55,9 +55,9 @@ EtsyClient.prototype.showListingInfo = function(id) {
         this.getHTMLTemplate('/templates/listing.tmpl'),
         this.getListingInfo(id)
     ).then(function(template, data) {
-    		console.log(data);
-            var filled_html = template(data.results[0]);
-            $('body').append(filled_html);
+        console.log(data);
+        var filled_html = template(data.results[0]);
+        $('body').append(filled_html);
     });
 }
 
@@ -66,8 +66,8 @@ EtsyClient.prototype.getUserInfo = function(id) {
     var url = this.complete_api_url + model + '/' + id + ".js?api_key=" + this.api_key + "&callback=?";
 
     return $.getJSON(url).then(function(data) {
-		return data;
-	});
+        return data;
+    });
 }
 
 EtsyClient.prototype.showUserInfo = function(id) {
@@ -76,25 +76,36 @@ EtsyClient.prototype.showUserInfo = function(id) {
         this.getHTMLTemplate('/templates/seller.tmpl'),
         this.getUserInfo(id)
     ).then(function(template, data) {
-    		console.log(data);
-            var filled_html = template(data.results[0]);
-            $('.mainArea').append(filled_html);
+        console.log(data);
+        var filled_html = template(data.results[0]);
+        $('.mainArea').append(filled_html);
     });
 }
 
 EtsyClient.prototype.handleClicks = function() {
     var self = this;
-    $('body').on('click', '.cover', function(){
-    	self.showListingInfo($(this).attr('id'));
+    $('body').on('click', '.cover', function() {
+        self.showListingInfo($(this).attr('id'));
+        $('body').toggleClass('noScroll');
     });
-    $('body').on('click', '.closebutton', function(){
-    	$( ".mask" ).remove();
-    	$( ".hoverbox" ).remove();
+    $('body').on('click', '.mask', function() {
+        $(".mask").remove();
+        $(".hoverbox").remove();
+        $('body').toggleClass('noScroll');
+
+    });
+    $('body').on('click', '.closebutton', function() {
+        $(".mask").remove();
+        $(".hoverbox").remove();
+        $('body').toggleClass('noScroll');
+
     });
 }
 
 $(function() {
-    var client = new EtsyClient({version: "v2/"});
-    client.showListings ();
+    var client = new EtsyClient({
+        version: "v2/"
+    });
+    client.showListings();
     client.handleClicks();
 });
