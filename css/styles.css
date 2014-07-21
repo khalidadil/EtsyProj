@@ -211,6 +211,20 @@ a{
   right: 10px;
   top: 10px;
 }
+.leftArrow, .rightArrow{
+  position: absolute;
+  display: inline-block;
+  color: white;
+  font-size: 1.5em;
+}
+.leftArrow{
+  top: 50%;
+  left: 15%;
+}
+.rightArrow{
+  top: 50%;
+  left: 83%;
+}
 .noScroll{
   overflow: hidden;
 }

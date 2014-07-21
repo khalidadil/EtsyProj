@@ -12,12 +12,13 @@ EtsyClient.prototype.getHTMLTemplate = function(url) {
     });
 };
 
-EtsyClient.prototype.getAllActiveListings = function() {
+EtsyClient.prototype.getAllActiveListings = function(offset) {
     var model = "listings/";
     var filter = "active";
+    this.offset = offset || 0;
     var num_listings = 15;
     var min_price = 100000;
-    var url = this.complete_api_url + model + filter + ".js?limit=" + num_listings + "&min_price=" + min_price + "&includes=MainImage&api_key=" + this.api_key + "&callback=?";
+    var url = this.complete_api_url + model + filter + ".js?limit=" + num_listings + "&min_price=" + min_price + "&offset=" + this.offset + "&includes=MainImage&api_key=" + this.api_key + "&callback=?";
 
     return $.getJSON(url).then(function(data) {
         this.cachedListings = data;
@@ -25,20 +26,33 @@ EtsyClient.prototype.getAllActiveListings = function() {
     });
 }
 
-EtsyClient.prototype.showListings = function() {
+EtsyClient.prototype.showListings = function(page) {
     var self = this;
     var all_html = '';
-    $.when(
+    var offset = page * 15;
+    return $.when(
         this.getHTMLTemplate('/templates/listings.tmpl'),
-        this.getAllActiveListings()
+        this.getAllActiveListings(offset)
     ).then(function(template, data) {
         var search_results = data.results;
+        // console.log(data.results);
         search_results.forEach(function(n) {
             var filled_html = template(n);
             all_html += filled_html;
         });
         $('.mainArea')[0].innerHTML = all_html;
+        // console.log(all_html);
+        return all_html;
     });
+}
+
+EtsyClient.prototype.showPages = function(page) {
+    var self = this;
+    // console.log(self.showListings(0));
+    for (i=0; i<page; i++){
+        var all_html = all_html + this.showListings(i);
+    }
+    $('.mainArea')[0].innerHTML = all_html;
 }
 
 EtsyClient.prototype.getListingInfo = function(id) {
@@ -107,16 +121,15 @@ EtsyClient.prototype.handleRouting = function() {
 
     Path.root("#/");
 
-    Path.map("#/").to(function(){
-    	self.showListings();
-    	$(".mask").remove();
-        $(".hoverbox").remove();
+    Path.map("#/:page").to(function() {
+        self.showPages(this.params.page);
+        $(".hoverListing").remove();
         $('body').removeClass('noScroll');
     });
 
-    Path.map("#/listing/:id").to(function(){
-    	self.showListingInfo(this.params.id);
-    	$('body').addClass('noScroll');
+    Path.map("#/listing/:id").to(function() {
+        self.showListingInfo(this.params.id);
+        $('body').addClass('noScroll');
     });
 
     Path.listen();

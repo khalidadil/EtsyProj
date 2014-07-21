@@ -1,18 +1,20 @@
-<a href="#/"><div class="mask"></div></a>
-<div class = "hoverbox">
-  <div class = "leftside">
-    <div class="image" style="background-image: url(<%= MainImage.url_fullxfull %>);"></div>
-    <div class="description"><p><%= description %></p></div>
-  </div><!--
-  --><div class = "rightside">
-  	   <div class = "mainsection">
-  		<div class="title"><h1><%= title %></h1></div>
-  		<div class="price"><h2>Price: $<%= price %></h2></div>
-  		<!--<div class="seller"><p>Crafted by: Artisanal2019</p></div>-->
-  	   </div>
-  		<div class="exclusive"><p>Only <i><%= quantity %></i> of this ultra exclusive item left! Get it before the <i><%= views %></i> other people that viewed this item buy it!
-        </p></div>
-  		<a href="<%= url %>"><div class="buy">BUY NOW</div></a>
+<div class="hoverListing">
+  <a href="#/"><div class="mask"></div></a>
+  <div class = "hoverbox">
+    <div class = "leftside">
+      <div class="image" style="background-image: url(<%= MainImage.url_fullxfull %>);"></div>
+      <div class="description"><p><%= description %></p></div>
+    </div><!--
+    --><div class = "rightside">
+    	   <div class = "mainsection">
+    		<div class="title"><h1><%= title %></h1></div>
+    		<div class="price"><h2>Price: $<%= price %></h2></div>
+    		<!--<div class="seller"><p>Crafted by: Artisanal2019</p></div>-->
+    	   </div>
+    		<div class="exclusive"><p>Only <i><%= quantity %></i> of this ultra exclusive item left! Get it before the <i><%= views %></i> other people that viewed this item buy it!
+          </p></div>
+    		<a href="<%= url %>"><div class="buy">BUY NOW</div></a>
+    </div>
+    <a href="#/"><div class = "closebutton">X</div></a>
   </div>
-  <a href="#/"><div class = "closebutton">X</div></a>
 </div>
