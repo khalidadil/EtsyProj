@@ -27,16 +27,17 @@ EtsyClient.prototype.getAllActiveListings = function() {
 
 EtsyClient.prototype.showListings = function() {
     var self = this;
+    var all_html = '';
     $.when(
         this.getHTMLTemplate('/templates/listings.tmpl'),
         this.getAllActiveListings()
     ).then(function(template, data) {
         var search_results = data.results;
-        // console.log(search_results);
         search_results.forEach(function(n) {
             var filled_html = template(n);
-            $('.mainArea').append(filled_html);
-        })
+            all_html += filled_html;
+        });
+        $('.mainArea')[0].innerHTML = all_html;
     });
 }
 
@@ -64,7 +65,7 @@ EtsyClient.prototype.showListingInfo = function(id) {
 
 EtsyClient.prototype.getUserInfo = function(id) {
     var model = 'users';
-    var url = this.complete_api_url + model + '/' + id + ".js?api_key=" + this.api_key + "&callback=?";
+    var url = this.complete_api_url + model + '/' + id + "/profile.js?api_key=" + this.api_key + "&callback=?";
 
     return $.getJSON(url).then(function(data) {
         return data;
@@ -77,7 +78,7 @@ EtsyClient.prototype.showUserInfo = function(id) {
         this.getHTMLTemplate('/templates/seller.tmpl'),
         this.getUserInfo(id)
     ).then(function(template, data) {
-        console.log(data);
+        // console.log(data);
         var filled_html = template(data.results[0]);
         $('.mainsection').append(filled_html);
     });
@@ -101,10 +102,31 @@ EtsyClient.prototype.handleClicks = function() {
     });
 }
 
+EtsyClient.prototype.handleRouting = function() {
+    var self = this;
+
+    Path.root("#/");
+
+    Path.map("#/").to(function(){
+    	self.showListings();
+    	$(".mask").remove();
+        $(".hoverbox").remove();
+        $('body').removeClass('noScroll');
+    });
+
+    Path.map("#/listing/:id").to(function(){
+    	self.showListingInfo(this.params.id);
+    	$('body').addClass('noScroll');
+    });
+
+    Path.listen();
+}
+
 $(function() {
     var client = new EtsyClient({
         version: "v2/"
     });
-    client.showListings();
-    client.handleClicks();
+    // client.showListings();
+    // client.handleClicks();
+    client.handleRouting();
 });

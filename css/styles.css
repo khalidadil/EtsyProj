@@ -56,12 +56,6 @@
   transform: translate(-50%,-50%);
   display: none;
 }
-.itemBox:hover {
-  /*display: inline-block;*/
-  /*width: 150px;*/
-  /*height: 150px;*/
-  /*background-color: darkgrey;  */
-}
 .cover{
   position: absolute;
   width:100%;
@@ -81,7 +75,6 @@
 .itemBox img {
   width: 150px;
 }
-
 .mask{
   width: 100%;
   height: 100%;
