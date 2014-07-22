@@ -48,10 +48,14 @@ EtsyClient.prototype.showListings = function(page) {
 
 EtsyClient.prototype.showPages = function(page) {
     var self = this;
-    // console.log(self.showListings(0));
-    for (i=0; i<page; i++){
-        var all_html = all_html + this.showListings(i);
+    var all_html = '';
+    for (i=0; i<=page; i++){
+        this.showListings(i).then(function(html){
+            all_html = all_html + html;
+            // console.log(all_html);
+        })
     }
+    console.log(all_html);
     $('.mainArea')[0].innerHTML = all_html;
 }
 
@@ -119,7 +123,7 @@ EtsyClient.prototype.handleClicks = function() {
 EtsyClient.prototype.handleRouting = function() {
     var self = this;
 
-    Path.root("#/");
+    Path.root("#/0");
 
     Path.map("#/:page").to(function() {
         self.showPages(this.params.page);
